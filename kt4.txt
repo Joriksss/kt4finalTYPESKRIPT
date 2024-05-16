@@ -2,6 +2,62 @@
 1. поле для функций Захара:
 
 2. поле для функций Кати Б.:
+interface User {
+    username: string;
+    password: string;
+    online: boolean;
+    verified: boolean;
+    phoneNumber: string;
+    age: number;
+    cardNumber: string;
+    geo: string;
+    balance: { [key: string]: number };
+}
+
+function signIn(user: User, username: string, password: string): { status: number, text: string, message: string } {
+    if (user.username === username && user.password === password) {
+        user.online = true;
+        return { status: 200, text: "OK", message: "username success!" };
+    } else {
+        return { status: 401, text: "Unauthorized", message: "username failed, check your username info for any errors and try again." };
+    }
+}
+
+function verify(user: User, password: string, phoneNumber: string, age: number, cardNumber: string, geo: string): { status: number, text: string, message: string } {
+    if (!user.verified) {
+        if (!user.phoneNumber && phoneNumber) {
+            user.phoneNumber = phoneNumber;
+        }
+        if (!user.age && age) {
+            user.age = age;
+        }
+        if (!user.cardNumber && cardNumber) {
+            user.cardNumber = cardNumber;
+        }
+        if (!user.geo && geo) {
+            user.geo = geo;
+        }
+
+        if (user.password === password) {
+            user.verified = true;
+            return { status: 200, text: "OK", message: "Verification success!" };
+        } else {
+            return { status: 401, text: "Unauthorized", message: "Verification failed." };
+        }
+    } else {
+        return { status: 400, text: "Bad Request", message: "User already verified." };
+    }
+}
+// Функция для обновления баланса пользователя
+function updateUserBalance(user: User, currency: string, amount: number): { status: number, text: string, message: string } {
+    if (user.balance[currency] === undefined) {
+        return { status: 400, text: "Bad Request", message: "Currency not found in user's balance." };
+    }
+
+    user.balance[currency] += amount;
+
+    return { status: 200, text: "OK", message: "User balance updated successfully!" };
+}
 
 3. поле для функций Карины:
 
