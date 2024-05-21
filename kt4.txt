@@ -1,4 +1,5 @@
 ﻿<<<<<<< HEAD
+//↓↓↓↓ ;c ↓↓↓↓
 1. поле для функций Захара:
 
 2. поле для функций Кати Б.:
@@ -13,7 +14,15 @@ interface User {
     geo: string;
     balance: { [key: string]: number };
 }
-
+/***
+↓↓↓↓Эти функции - процедурного типа, мы используем методы классов↓↓↓↓
+Пример:
+class User {
+signIn(){
+.....
+ }
+}
+***/
 function signIn(user: User, username: string, password: string): { status: number, text: string, message: string } {
     if (user.username === username && user.password === password) {
         user.online = true;
@@ -59,23 +68,33 @@ function updateUserBalance(user: User, currency: string, amount: number): { stat
     return { status: 200, text: "OK", message: "User balance updated successfully!" };
 }
 
-3. поле для функций Карины: 
+3. поле для функций Карины:
+
+//↓↓↓↓Интересный бэкенд, жаль, что к нашему предмету не относится↓↓↓↓
 
 import express, { Request, Response } from 'express';
 
+
+// ↓↓↓↓ Чудо конструкция поднятия сервера в процедурном стиле, даже не в ООП =( ↓↓↓↓
 const app = express();
 app.use(express.json());
 
 function checkPhoneNumber(phoneNumber: string): boolean {
   // Проверка номера телефона
-
+/***
+ ↓↓↓↓ Отличная проверка человека с номером телефона "1234567890" =( =(.
+Функция не возрващает JSON, наш фронтенд даже не поймет, что мы проверили человека с красивым номером "1234567890", еще один "=(" за это ↓↓↓↓
+***/
   if (phoneNumber === '1234567890') {
     return true;
   } else {
     return false;
   }
 }
-
+/***
+ ↓↓↓↓ Приятно, что вы подняли сервер, ↓↓↓↓
+ но роуты, к сожалению, нам не нужны, мы не пишем API. Но, в виде ответа - добротный JSON - +1"=)"
+***/
 app.post('/login', (req: Request, res: Response) => {
   const phoneNumber = req.body.phone_number;
 
@@ -96,20 +115,18 @@ app.post('/login', (req: Request, res: Response) => {
   }
 });
 
-
+//↓↓↓↓ ;c ↓↓↓↓
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
 
-
+//↓↓↓↓ ;c ↓↓↓↓
 3. поле для функций Кати С.:
 
+//↓↓↓↓ ;c ↓↓↓↓
 4. поле для функций Полины:
 
 при добавлении подпишите, какую функцию добавляете, от себя или по заданию, и какую
 всем удачи вы справитесь !!!!
-=======
-что-то
-здесь был мамонгасик
-так надо
+
 >>>>>>> aee2dc04b2cdc8611b7c9000176571c4ad501750
