@@ -59,7 +59,7 @@ class User {
             return { status: 401, text: "Unauthorized", message: "Verification failed." };
         }
     }
-// для проверки баланса пользователя
+// для обновления баланса пользователя
     updateUserBalance(currency: string, amount: number): { status: number, text: string, message: string } {
         if (this.balance[currency] === undefined) {
             return { status: 400, text: "Bad Request", message: "Currency not found in user's balance." };
