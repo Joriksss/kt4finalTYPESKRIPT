@@ -69,7 +69,7 @@ class User {
 
         return { status: 200, text: "OK", message: "User balance updated successfully!" };
     }
-}
+}s
 
 3. поле для функций Карины: 
 
@@ -79,20 +79,20 @@ interface Response {
     message: string;
 }
 
-function checkPhoneNumber(phoneNumber: string): Response {
-    const validPhoneNumber = "1234567890";
+checkPhoneNumber(phoneNumber: string): Response {
+  
 
-    if (phoneNumber === validPhoneNumber) {
+    if (phoneNumber == this.phoneNumber) {
         return { status: 200, text: "OK", message: "login success" };
     } else {
         return { status: 401, text: "Unauthorized", message: "Invalid phone number" };
     }
 }
 
-function additionalFunction(): Response {
+changePhoneNumber(): Response { 
+ this.phoneNumber = phoneNumber 
     return { status: 200, text: "OK", message: "Additional function executed successfully" };
 }
-
 
 const phoneNumber = "1234567890";
 const result = checkPhoneNumber(phoneNumber);
