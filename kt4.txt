@@ -117,6 +117,62 @@ app.listen(3000, () => {
 3. поле для функций Кати С.:
 
 4. поле для функций Полины:
+ (по заданию)
+
+type User = {
+    username: string;
+    password: string;
+    balance: number;
+    transactionHistory: string[];
+};
+
+let users: User[] = [
+    { username: "user1", password: "password1", balance: 100, transactionHistory: [] },
+    { username: "user2", password: "password2", balance: 50, transactionHistory: [] }
+];
+
+function login(username: string, password: string): any {
+    const user = users.find(user => user.username === username && user.password === password);
+    if (user) {
+        return { status: 200, text: "OK", message: "login success" };
+    } else {
+        return { status: 401, text: "Unauthorized", message: "login failed" };
+    }
+}
+
+function acceptDeal(user1: string, user2: string, amount: number): any {
+    const sender = users.find(user => user.username === user1);
+    const receiver = users.find(user => user.username === user2);
+    
+    if (!sender || !receiver) {
+        return { status: 404, text: "Not Found", message: "user not found" };
+    }
+
+    if (sender.balance < amount) {
+        return { status: 400, text: "Bad Request", message: "insufficient balance" };
+    }
+
+    sender.balance -= amount;
+    receiver.balance += amount;
+
+    const transactionInfo = `Transferred ${amount} from ${user1} to ${user2}`;
+    sender.transactionHistory.push(transactionInfo);
+    receiver.transactionHistory.push(transactionInfo);
+
+    return { status: 200, text: "OK", message: "deal accepted" };
+}
+
+function checkBalance(username: string): any {
+    const user = users.find(user => user.username === username);
+    
+    if (!user) {
+        return { status: 404, text: "Not Found", message: "user not found" };
+    }
+
+    return { status: 200, text: "OK", message: `current balance: ${user.balance}` };
+}
+
+
 
 при добавлении подпишите, какую функцию добавляете, от себя или по заданию, и какую
 всем удачи вы справитесь !!!!
